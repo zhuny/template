@@ -1,4 +1,4 @@
-from flask import Flask, Blueprint
+from flask import Flask, Blueprint, render_template
 
 from ._util import BaseView
 
@@ -7,7 +7,7 @@ class IndexView(BaseView):
     path = ["/", "/hello"]
 
     def get(self):
-        return "Hello World!"
+        return render_template("index.html")
 
 
 def init(app: Flask):
