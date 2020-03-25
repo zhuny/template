@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy, Model
 from sqlalchemy import Column, Integer, DateTime, func
 
@@ -14,8 +15,10 @@ class BaseModel(Model):
 
 
 db = SQLAlchemy(model_class=BaseModel)
+migrate = Migrate(db=db)
 
 
 def init(app: Flask):
     db.init_app(app)
+    migrate.init_app(app)
 
