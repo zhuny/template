@@ -1,4 +1,7 @@
+import os
+
 from flask import Flask
+from flask_debugtoolbar import DebugToolbarExtension
 
 
 def create_app():
@@ -9,6 +12,9 @@ def create_app():
 
     from .user import init as user_init
     user_init(app)
+
+    app.secret_key = os.urandom(16)
+    toolbar = DebugToolbarExtension(app)
 
     return app
 
