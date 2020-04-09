@@ -6,6 +6,11 @@
 <script>
 export default {
   name: "HelloWorld",
+  created() {
+    this.axios.get("/ping").then((response) => {
+      console.log(response);
+    });
+  },
   props: {
     msg: String
   }
