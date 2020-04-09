@@ -4,10 +4,12 @@
 </template>
 
 <script>
+import apiUrl from "../apiUrl";
+
 export default {
   name: "HelloWorld",
   created() {
-    this.axios.get("/ping").then((response) => {
+    this.axios.get(apiUrl.ping).then((response) => {
       console.log(response);
     });
   },
