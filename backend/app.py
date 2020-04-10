@@ -13,9 +13,6 @@ def create_app():
     from .user import init as user_init
     user_init(app)
 
-    from service.assets import init as assets_init
-    assets_init(app)
-
     app.secret_key = os.urandom(16)
     toolbar = DebugToolbarExtension(app)
 

@@ -1,18 +1,30 @@
-from flask import Flask, Blueprint, render_template
+from flask import Flask
+from flask_resty import GenericModelView, Api
 
-from ._util import BaseView
+
+class IndexViewBase(GenericModelView):
+    pass
 
 
-class IndexView(BaseView):
-    path = ["/", "/hello"]
-
+class IndexListView(IndexViewBase):
     def get(self):
-        return render_template("index.html")
+        return self.list()
+
+    def post(self):
+        return self.create()
 
 
-def init(app: Flask):
-    bp = Blueprint('index', __name__)
-    IndexView.register(bp)
+class IndexView(IndexViewBase):
+    def get(self, id):
+        return self.retrieve(id)
 
-    app.register_blueprint(bp)
+    def patch(self, id):
+        return self.update(id, partial=True)
+
+    def delete(self, id):
+        return self.destroy(id)
+
+
+def init(app: Flask, api: Api):
+    api.add_resource('/index', IndexView, IndexListView)
 
