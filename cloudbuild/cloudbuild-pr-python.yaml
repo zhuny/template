@@ -7,11 +7,15 @@ steps:
       - install
       - -r
       - requirements.txt
+      - -t
+      - ./venv
   - name: python:3.7
     entrypoint: python3
     args:
       - -m
       - flake8
+    env:
+      - "PYTHONPATH=./venv"
   - name: python:3.7
     entrypoint: python3
     args:
@@ -20,3 +24,5 @@ steps:
       - discover
       - -s
       - tests
+    env:
+      - "PYTHONPATH=./venv"
