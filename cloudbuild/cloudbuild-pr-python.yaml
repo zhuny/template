@@ -14,6 +14,8 @@ steps:
     args:
       - -m
       - flake8
+      - --count
+      - backend
     env:
       - "PYTHONPATH=./venv"
   - name: python:3.7
