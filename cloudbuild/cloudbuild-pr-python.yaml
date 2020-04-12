@@ -1,0 +1,19 @@
+steps:
+  - name: gcr.io/cloud-builders/python
+    args:
+      - -m
+      - pip
+      - install
+      - -r
+      - requirements.txt
+  - name: gcr.io/cloud-builders/python
+    args:
+      - -m
+      - flake8
+  - name: gcr.io/cloud-builders/python
+    args:
+      - -m
+      - unitteset
+      - discover
+      - -s
+      - tests
