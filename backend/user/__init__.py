@@ -11,4 +11,3 @@ def load_user(user_id):
 
 def init(app: Flask):
     login_manager.init_app(app)
-

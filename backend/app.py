@@ -14,7 +14,6 @@ def create_app():
     user_init(app)
 
     app.secret_key = os.urandom(16)
-    toolbar = DebugToolbarExtension(app)
+    DebugToolbarExtension(app)
 
     return app
-

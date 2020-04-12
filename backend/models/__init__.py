@@ -21,4 +21,3 @@ migrate = Migrate(db=db)
 def init(app: Flask):
     db.init_app(app)
     migrate.init_app(app)
-

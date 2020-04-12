@@ -27,4 +27,3 @@ class IndexView(IndexViewBase):
 
 def init(app: Flask, api: Api):
     api.add_resource('/index', IndexView, IndexListView, id_rule='<rid>')
-

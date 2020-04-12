@@ -8,4 +8,3 @@ class BaseSchema(ma.Schema):
 
 base_schema = BaseSchema()
 basis_schema = BaseSchema(many=True)
-
