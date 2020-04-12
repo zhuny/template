@@ -22,7 +22,7 @@ steps:
     entrypoint: python3
     args:
       - -m
-      - unitteset
+      - unittest
       - discover
       - -s
       - tests
