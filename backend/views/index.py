@@ -15,16 +15,16 @@ class IndexListView(IndexViewBase):
 
 
 class IndexView(IndexViewBase):
-    def get(self, id):
-        return self.retrieve(id)
+    def get(self, rid):
+        return self.retrieve(rid)
 
-    def patch(self, id):
-        return self.update(id, partial=True)
+    def patch(self, rid):
+        return self.update(rid, partial=True)
 
-    def delete(self, id):
-        return self.destroy(id)
+    def delete(self, rid):
+        return self.destroy(rid)
 
 
 def init(app: Flask, api: Api):
-    api.add_resource('/index', IndexView, IndexListView)
+    api.add_resource('/index', IndexView, IndexListView, id_rule='<rid>')
 
