@@ -39,11 +39,9 @@ steps:
     entrypoint: python3
     args:
       - -m
-      - unittest
-      - discover
-      - -s
-      - tests
+      - scripts.coverage_test
     id: 'py3-test'
     waitFor: ['py3-flake8']
+    dir: '.'
     env:
       - "PYTHONPATH=./venv"
