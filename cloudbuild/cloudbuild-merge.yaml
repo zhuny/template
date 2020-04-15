@@ -7,4 +7,8 @@ steps:
     dir: 'frontend'
     args:
       - run
-      - lint
+      - build
+  - name: gcr.io/cloud-builders/gcloud
+    args:
+      - app
+      - deploy

@@ -1,0 +1,47 @@
+steps:
+  - name: gcr.io/cloud-builders/npm
+    dir: 'frontend'
+    args:
+      - install
+    id: 'npm-install'
+    waitFor: ['-']
+  - name: gcr.io/cloud-builders/npm
+    dir: 'frontend'
+    args:
+      - run
+      - lint
+    id: 'npm-lint'
+    waitFor: ['npm-install']
+  - name: python:3.7
+    entrypoint: python3
+    args:
+      - -m
+      - pip
+      - install
+      - -r
+      - requirements.txt
+      - -t
+      - ./venv
+    id: 'py3-pip-install'
+    waitFor: ['-']
+  - name: python:3.7
+    entrypoint: python3
+    args:
+      - -m
+      - flake8
+      - --count
+      - backend
+    id: 'py3-flake8'
+    waitFor: ['py3-pip-install']
+    env:
+      - "PYTHONPATH=./venv"
+  - name: python:3.7
+    entrypoint: python3
+    args:
+      - -m
+      - scripts.coverage_test
+    id: 'py3-test'
+    waitFor: ['py3-flake8']
+    dir: '.'
+    env:
+      - "PYTHONPATH=./venv"
