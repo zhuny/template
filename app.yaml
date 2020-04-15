@@ -1,16 +1,24 @@
 runtime: python37
-service: {service}
+service: template
 
 handlers:
   # This configures Google App Engine to serve the files in the app's static
   # directory.
-- url: /static
-  static_dir: /front/dist
+- url: /vue
+  static_dir: frontend/dist
+  secure: always
+  redirect_http_response_code: 301
+
+- url: /
+  static_files: frontend/dist/index.html
+  upload: frontend/dist/index\.html
+  secure: always
+  redirect_http_response_code: 301
 
   # This handler routes all requests not caught above to your main app. It is
   # required when static routes are defined, but can be omitted (along with
   # the entire handlers section) when there are no static files defined.
-- url: /.*
+- url: /api/v\d+/.*
   script: auto
   secure: always
   redirect_http_response_code: 301
