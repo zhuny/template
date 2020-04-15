@@ -20,6 +20,8 @@ steps:
       - install
       - -r
       - requirements.txt
+      - -r
+      - requirements-dev.txt
       - -t
       - ./venv
     id: 'py3-pip-install'
